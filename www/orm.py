@@ -4,7 +4,7 @@ import aiomysql
 def log(sql,args=0):
     logging.info('SQL:%s' % sql)
 
-async def create_poll(loop,**kw):
+async def create_pool(loop,**kw):
     logging.info('create database connection pool...')
     global __pool
     __pool = await aiomysql.create_pool(
@@ -40,7 +40,7 @@ async def execute(sql,args,autocommit=True):
             await conn.begin()
         try:
             async with conn.cursor(aiomysql.DictCursor) as cur:
-                await cur.exeute(sql.replace('?','%s'),args)
+                await cur.execute(sql.replace('?','%s'),args)
                 affected = cur.rowcount
             if not autocommit:
                     await conn.commit()
