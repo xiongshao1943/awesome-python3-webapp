@@ -23,7 +23,7 @@ class APIValueError(APIError):
   '''
   Indicate the input value has error or invalid. The data specifies the error field of input form.
   '''
-  def __init__(self,field,message='')
+  def __init__(self,field,message=''):
     super(APIValueError,self).__init__('value:invalid',field,message)
 
 class APIResourceNotFoundError(APIError):
@@ -38,6 +38,6 @@ class APIPermissionError(APIError):
   '''
   Indicate the api has no permission.
   '''
-  def __init__(self,message='')
+  def __init__(self,message=''):
     super(APIPermissionError,self).__init__('permission:forbidden','permission',message)
     
